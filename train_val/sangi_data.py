@@ -15,14 +15,14 @@ import torchvision.transforms as transforms
 # crop data (368*368)*2700
 
 def read_sangi_data_file(root_dir):
-    image_arr = np.array(glob.glob(os.path.join(root_dir, 'ASR_MAIN_crop/*.jpg')))
+    image_arr = np.array(glob.glob(os.path.join(root_dir, 'Cooler_crop/*.jpg')))
     image_nums_arr = np.array([float(s.rsplit('.')[-2][-5:]) for s in image_arr])
     sorted_image_arr = image_arr[np.argsort(image_nums_arr)]
     return sorted_image_arr.tolist()
 
 def read_sangi_mat_file(root_dir, img_list):
     
-    mat_arr = scipy.io.loadmat(os.path.join(root_dir, 'ASR_MAIN_crop_joint.mat'))['test']
+    mat_arr = scipy.io.loadmat(os.path.join(root_dir, 'Cooler_crop_joint.mat'))['Cooler_crop_joint']
     # (14,3, 2700)
 #    lms = mat_arr.transpose([2, 1, 0])
     kpts = mat_arr.transpose([2, 0, 1]).tolist()
