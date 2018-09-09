@@ -184,6 +184,7 @@ def train_val(model, args):
                 'iter': iters,
                 'state_dict': model.state_dict(),
             }, 0, args.model_name)
+            torch.save(model,'model')
 
             # val
             if args.val_dir is not None and config.test_interval != 0 and iters % config.test_interval == 0:
@@ -220,7 +221,7 @@ def train_val(model, args):
                         'iter': iters,
                         'state_dict': model.state_dict(),
                     }, is_best, args.model_name)
-
+                    torch.save(model,'model')
                     if j % config.display == 0:
                         print('Test Iteration: {0}\t'
                               'Time {batch_time.sum:.3f}s / {1}iters, ({batch_time.avg:.3f})\t'
